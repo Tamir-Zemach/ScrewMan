@@ -1,0 +1,330 @@
+fileFormatVersion: 2
+guid: 8236083363fc79347ade02589f13b083
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Brown_Water_Drop_Anim_Sprite_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 680
+        width: 49
+        height: 83
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24645b17069e90248b4fc69da5c52b98
+      internalID: -897008488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Water_Drop_Anim_Sprite_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 520
+        width: 192
+        height: 159
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae53b9d427298a4a8075d17597f1bfb
+      internalID: -1658781880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Water_Drop_Anim_Sprite_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 520
+        width: 206
+        height: 216
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24e96589487814e439d19de5181ccd6f
+      internalID: 576036304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Water_Drop_Anim_Sprite_Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 517
+        width: 156
+        height: 127
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3eb63534f3393a4ab21d7d1b74528cc
+      internalID: -1072693942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Water_Drop_Anim_Sprite_Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 266
+        width: 212
+        height: 157
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1659c40dd663074e97ece7cccd0f16c
+      internalID: -1896711560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Water_Drop_Anim_Sprite_Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 265
+        width: 217
+        height: 115
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0285d10b344a3084fb401cfc20527e44
+      internalID: 949412698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Water_Drop_Anim_Sprite_Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 265
+        width: 220
+        height: 82
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8dfeeeb568a07943a0b6fae52dcd20d
+      internalID: -1753442015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Water_Drop_Anim_Sprite_Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 265
+        width: 213
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0300a762957f9704591c859d34b0d359
+      internalID: 1259621955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Brown_Water_Drop_Anim_Sprite_Sheet_0: -897008488
+      Brown_Water_Drop_Anim_Sprite_Sheet_1: 766287773
+      Brown_Water_Drop_Anim_Sprite_Sheet_10: -1896711560
+      Brown_Water_Drop_Anim_Sprite_Sheet_11: 1241710907
+      Brown_Water_Drop_Anim_Sprite_Sheet_12: -460500291
+      Brown_Water_Drop_Anim_Sprite_Sheet_13: -979137598
+      Brown_Water_Drop_Anim_Sprite_Sheet_14: -1271193819
+      Brown_Water_Drop_Anim_Sprite_Sheet_15: 199107249
+      Brown_Water_Drop_Anim_Sprite_Sheet_16: 311384340
+      Brown_Water_Drop_Anim_Sprite_Sheet_17: -1652849347
+      Brown_Water_Drop_Anim_Sprite_Sheet_18: -1618046956
+      Brown_Water_Drop_Anim_Sprite_Sheet_19: -1106181163
+      Brown_Water_Drop_Anim_Sprite_Sheet_2: -1658781880
+      Brown_Water_Drop_Anim_Sprite_Sheet_20: 949412698
+      Brown_Water_Drop_Anim_Sprite_Sheet_21: -660053927
+      Brown_Water_Drop_Anim_Sprite_Sheet_22: -2047969277
+      Brown_Water_Drop_Anim_Sprite_Sheet_23: -453737164
+      Brown_Water_Drop_Anim_Sprite_Sheet_24: 263118811
+      Brown_Water_Drop_Anim_Sprite_Sheet_25: 1061395649
+      Brown_Water_Drop_Anim_Sprite_Sheet_26: -935658809
+      Brown_Water_Drop_Anim_Sprite_Sheet_27: 262908024
+      Brown_Water_Drop_Anim_Sprite_Sheet_28: -1690604045
+      Brown_Water_Drop_Anim_Sprite_Sheet_29: -1753442015
+      Brown_Water_Drop_Anim_Sprite_Sheet_3: 576036304
+      Brown_Water_Drop_Anim_Sprite_Sheet_30: 931191510
+      Brown_Water_Drop_Anim_Sprite_Sheet_31: 519934722
+      Brown_Water_Drop_Anim_Sprite_Sheet_32: 1259621955
+      Brown_Water_Drop_Anim_Sprite_Sheet_33: 823759945
+      Brown_Water_Drop_Anim_Sprite_Sheet_34: 499165644
+      Brown_Water_Drop_Anim_Sprite_Sheet_4: 391439814
+      Brown_Water_Drop_Anim_Sprite_Sheet_5: -1072693942
+      Brown_Water_Drop_Anim_Sprite_Sheet_6: -1332603801
+      Brown_Water_Drop_Anim_Sprite_Sheet_7: 1786726308
+      Brown_Water_Drop_Anim_Sprite_Sheet_8: -222464072
+      Brown_Water_Drop_Anim_Sprite_Sheet_9: 533114992
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
