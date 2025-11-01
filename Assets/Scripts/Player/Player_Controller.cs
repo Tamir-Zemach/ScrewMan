@@ -1,4 +1,5 @@
 
+using Player;
 using UnityEngine;
 
 
@@ -60,7 +61,7 @@ public class Player_Controller : MonoBehaviour
         }
         if (PlayerStateChecker._isWaitingForDashInTheGround && PlayerStateChecker.isDashingDown)
         {
-            DashFunctions.InTheGround();
+            DashFunctions.InTheGroundMovement();
             PlayerStateChecker._safePos = transform.position;
         }
         if (PlayerStateChecker._dashJump)

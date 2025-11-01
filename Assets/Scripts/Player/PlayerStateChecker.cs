@@ -1,5 +1,6 @@
 
 using System.Xml.Serialization;
+using Player;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -198,7 +199,7 @@ public class PlayerStateChecker : MonoBehaviour
     private void StartTimer()
     {
         _waitTime += Time.deltaTime;
-        if (_waitTime > DashFunctions._maxTimeWait || InputGetter._pressedUp)
+        if (_waitTime > DashFunctions.MaxTimeWait || InputGetter._pressedUp)
         {
             _inTheGroundMovement = false;
             _canMove = false;

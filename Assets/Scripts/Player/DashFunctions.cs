@@ -1,137 +1,165 @@
 using System.Collections;
-using System.Diagnostics;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
-public class DashFunctions : MonoBehaviour
+namespace Player
 {
-
-    int _playerLayer;
-    int _groundLayerIndex;
-    int _platformLayerIndex;
-    int _camerasTriggerIndex;
-
-    [SerializeField] private float _afterDashSpeed = 0.3f;
-
-    private Rigidbody2D _rb;
-    [SerializeField] private GameObject _playerGfx;
-
-    public float _maxTimeWait = 1.3f;
-    [SerializeField] private float _jumpForce = 30f;
-    [SerializeField] private float _jumpDash = 3f;
-    [SerializeField] private float _dashDownForce = 20f;
-
-    private PlayerStateChecker PlayerStateChecker;
-    private ParticleController ParticleController;
-    private SoundControllerWithoutAnimator SoundControllerWithoutAnimator;
-    private PlayerMovement PlayerMovement;
-    private InputGetter InputGetter;
-    private void Awake()
+    public class DashFunctions : MonoBehaviour
     {
-        PlayerStateChecker = GetComponent<PlayerStateChecker>();
-        ParticleController = GetComponent<ParticleController>();
-        InputGetter = GetComponent<InputGetter>();
-        PlayerMovement = GetComponent<PlayerMovement>();
-        SoundControllerWithoutAnimator = GetComponent<SoundControllerWithoutAnimator>();
-        _playerLayer = gameObject.layer;
-        _groundLayerIndex = LayerMask.NameToLayer("Ground");
-        _platformLayerIndex = LayerMask.NameToLayer("Platform");
-        _camerasTriggerIndex = LayerMask.NameToLayer("Special Camera Trigger");
-        _rb = GetComponent<Rigidbody2D>();
-    }
+        private int _playerLayer;
+        private int _groundLayerIndex;
+        private int _platformLayerIndex;
+        private int _camerasTriggerIndex;
 
 
-    public void InTheGround()
-    {
+        [Tooltip("Multiplier applied to velocity after a dash to reduce momentum.")]
+        [SerializeField] private float _afterDashSpeed = 0.3f;
+
+        [Tooltip("Reference to the player's visual GameObject used during dash effects.")]
+        [SerializeField] private GameObject _playerGfx;
+
+        [Tooltip("Base force applied when jumping from the ground.")]
+        [SerializeField] private float _jumpForce = 30f;
+
+        [Tooltip("Multiplier for directional dash force when jumping.")]
+        [SerializeField] private float _jumpDash = 3f;
+
+        [Tooltip("Force applied when dashing downward toward the ground.")]
+        [SerializeField] private float _dashDownForce = 20f;
+
+        [Tooltip("Maximum time to wait in the air before initiating downward dash.")]
+        public float MaxTimeWait = 1.3f;
+
         
-        IgnoreCollisionOtherThanGround();
-        PlayerMovement.ResetVelocity();
-        PlayerStateChecker.isDashingDown = false;
-        _playerGfx.SetActive(false);
-        SoundControllerWithoutAnimator.PlayRandomSoundInGround();
-    }
-    public void DashJumpFromGround()
-    {
-        ParticleController.GoingOutTheGroundHandler();
-        _playerGfx.SetActive(true);
-        _rb.AddForce(Vector2.up * _jumpForce * _jumpDash, ForceMode2D.Impulse);
-        if (PlayerStateChecker._dashJumpWithDir)
+        private PlayerStateChecker _playerStateChecker;
+        private ParticleController _particleController;
+        private SoundControllerWithoutAnimator _soundControllerWithoutAnimator;
+        private PlayerMovement _playerMovement;
+        private InputGetter _inputGetter;
+
+        
+        private Rigidbody2D _rb;
+        
+        public DashFunctions(int groundLayerIndex)
         {
-            DashForwardFromGround();
-            PlayerStateChecker._dashJumpWithDir = false;
+            _groundLayerIndex = groundLayerIndex;
         }
-        SoundControllerWithoutAnimator.StopPlayingSounds();
-        InputGetter._pressedUp = false;
-        CollideWithEveryThing();
-    }
-    private void IgnoreCollisionOtherThanGround()
-    {
-        //checks all of the layers in the scene and if the layer is not ground or bojects - than ignore it 
-        for (int i = 0; i < 32; i++)
+
+        private void Awake()
         {
-            if (i != _groundLayerIndex && i != _platformLayerIndex && i != _camerasTriggerIndex)
+            _playerStateChecker = GetComponent<PlayerStateChecker>();
+            _particleController = GetComponent<ParticleController>();
+            _inputGetter = GetComponent<InputGetter>();
+            _playerMovement = GetComponent<PlayerMovement>();
+            _soundControllerWithoutAnimator = GetComponent<SoundControllerWithoutAnimator>();
+            _playerLayer = gameObject.layer;
+            _groundLayerIndex = LayerMask.NameToLayer("Ground");
+            _platformLayerIndex = LayerMask.NameToLayer("Platform");
+            _camerasTriggerIndex = LayerMask.NameToLayer("Special Camera Trigger");
+            _rb = GetComponent<Rigidbody2D>();
+        }
+
+
+        public void InTheGroundMovement()
+        {
+            IgnoreCollisionOtherThanGround();
+            _playerMovement.ResetVelocity();
+            _playerStateChecker.isDashingDown = false;
+            _playerGfx.SetActive(false);
+            _soundControllerWithoutAnimator.PlayRandomSoundInGround();
+        }
+        public void DashJumpFromGround()
+        {
+            _particleController.GoingOutTheGroundHandler();
+            _playerGfx.SetActive(true);
+            _rb.AddForce(Vector2.up * _jumpForce * _jumpDash, ForceMode2D.Impulse);
+            if (_playerStateChecker._dashJumpWithDir)
             {
-                Physics2D.IgnoreLayerCollision(_playerLayer, i, true);
+                DashForwardFromGround();
+                _playerStateChecker._dashJumpWithDir = false;
             }
-            else
+            _soundControllerWithoutAnimator.StopPlayingSounds();
+            _inputGetter._pressedUp = false;
+            CollideWithEveryThing();
+        }
+        private void IgnoreCollisionOtherThanGround()
+        {
+            //checks all of the layers in the scene and if the layer is not ground or bojects - than ignore it 
+            for (int i = 0; i < 32; i++)
+            {
+                if (i != _groundLayerIndex && i != _platformLayerIndex && i != _camerasTriggerIndex)
+                {
+                    Physics2D.IgnoreLayerCollision(_playerLayer, i, true);
+                }
+                else
+                {
+                    Physics2D.IgnoreLayerCollision(_playerLayer, i, false);
+                }
+
+            }
+
+        }
+
+
+        public void StopMomentum()
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x * _afterDashSpeed, _rb.velocity.y* _afterDashSpeed);
+            _playerStateChecker.isDashingUp = false;
+            _playerStateChecker._inAirAfterJump = true;
+        }
+
+        private void CollideWithEveryThing()
+        {
+            //go back to collide with every layer
+            for (int i = 0; i < 32; i++)
             {
                 Physics2D.IgnoreLayerCollision(_playerLayer, i, false);
             }
 
         }
 
-    }
-
-
-    public void StopMomentum()
-    {
-        _rb.velocity = new Vector2(_rb.velocity.x * _afterDashSpeed, _rb.velocity.y* _afterDashSpeed);
-         PlayerStateChecker.isDashingUp = false;
-         PlayerStateChecker._inAirAfterJump = true;
-    }
-    void CollideWithEveryThing()
-    {
-        //go back to collide with every layer
-        for (int i = 0; i < 32; i++)
+        private void DashForwardFromGround()
         {
-            Physics2D.IgnoreLayerCollision(_playerLayer, i, false);
+            // Apply force based on character's facing direction
+            var direction = Mathf.Sign(transform.localScale.x);
+            _rb.AddForce(Vector2.right * direction * _jumpForce * _jumpDash, ForceMode2D.Impulse);
+        }
+        public void DashTowardsGround()
+        { 
+            StartCoroutine(WaitInAirBeforeDashing());
         }
 
+        private IEnumerator WaitInAirBeforeDashing()
+        {
+ 
+            FreezeMovement();
+            
+            //wait for half of a second before going to the ground
+            yield return new WaitForSeconds(0.2f);
+            
+            DashDown();
+        }
+
+        
+        private void FreezeMovement()
+        {
+            _rb.velocity = Vector2.zero;
+            _playerStateChecker._freezeBeforeDash = true;
+            _playerStateChecker.isDashingDown = true;
+            _playerStateChecker._canMove = false;
+            _rb.gravityScale = 0;
+        }
+        
+        private void DashDown()
+        {
+            _particleController.SmokeDownParticleSpawn();
+            _rb.gravityScale = _playerStateChecker._gravityDefault;
+            _playerStateChecker._freezeBeforeDash = false;
+            _playerStateChecker._canMove = true;
+            _rb.AddForce(Vector2.down * _dashDownForce, ForceMode2D.Impulse);
+            _rb.velocity = new Vector2(0, _rb.velocity.y);
+            _inputGetter._pressedDown = false;
+        }
     }
-
-
-    void DashForwardFromGround()
-    {
-        // Apply force based on character's facing direction
-        float direction = Mathf.Sign(transform.localScale.x);
-        _rb.AddForce(Vector2.right * direction * _jumpForce * _jumpDash, ForceMode2D.Impulse);
-    }
-    public void DashTowardsGround()
-    { 
-       StartCoroutine(WaitInAirBeforeDashing());
-    }
-
-    IEnumerator WaitInAirBeforeDashing()
-    {
-        // freeze your movement before dash
-        _rb.velocity = Vector2.zero;
-        PlayerStateChecker._freezeBeforeDash = true;
-        PlayerStateChecker.isDashingDown = true;
-        PlayerStateChecker._canMove = false;
-        _rb.gravityScale = 0;
-        //wait for half of a second before going to the ground
-        yield return new WaitForSeconds(0.2f);
-        //gives the force towrds to ground
-        ParticleController.SmokeDownParticleSpawn();
-        _rb.gravityScale = PlayerStateChecker._gravityDefault;
-        PlayerStateChecker._freezeBeforeDash = false;
-        PlayerStateChecker._canMove = true;
-        _rb.AddForce(Vector2.down * _dashDownForce, ForceMode2D.Impulse);
-        _rb.velocity = new Vector2(0, _rb.velocity.y);
-        InputGetter._pressedDown = false;
-    }
-
-
 }
 
 
