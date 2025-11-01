@@ -23,7 +23,7 @@ public class AnimationController : MonoBehaviour
     private void Update()
     {
 
-        if (GameManager._hasGameStarted)
+        if (GameManager.HasGameStarted)
         {
             AnimatorParameterSetter();
         }

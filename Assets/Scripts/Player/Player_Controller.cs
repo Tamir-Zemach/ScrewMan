@@ -32,7 +32,7 @@ public class Player_Controller : MonoBehaviour
 
     void Update()
     {
-        if (GameManager._hasGameStarted)
+        if (GameManager.HasGameStarted)
         {
             DashManager();
             ShootingManager();
@@ -41,7 +41,7 @@ public class Player_Controller : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (GameManager._hasGameStarted)
+        if (GameManager.HasGameStarted)
         {
             Movement();
             InAirMovement();

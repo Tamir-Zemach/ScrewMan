@@ -33,7 +33,7 @@ public class ParticleController : MonoBehaviour
     }
     private void Update()
     {
-        if (GameManager._hasGameStarted)
+        if (GameManager.HasGameStarted)
         {
             InGroundParticleRotation();
         }

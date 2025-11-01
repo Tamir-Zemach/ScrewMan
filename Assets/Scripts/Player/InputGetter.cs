@@ -19,7 +19,7 @@ public class InputGetter : MonoBehaviour
 
     void Update()
     {
-        if (GameManager._hasGameStarted)
+        if (GameManager.HasGameStarted)
         {
             GetInput();
         }

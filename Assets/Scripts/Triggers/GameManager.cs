@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public PlayerStateChecker PlayerStateChecker; 
     public HealthManager HealthManager;
     public PlayerMovement playerMovement;
-    public bool _hasGameStarted;
+    public bool HasGameStarted;
     public bool _gameOver = false;
 
     [SerializeField] private Button _startGameButton;
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         GameStartUp();
         if (PlayerStateChecker._checkPointAfterBoss)
         {
-            _hasGameStarted = true;
+            HasGameStarted = true;
         }
     }
 
@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
     void StartGame()
     {
         StartCoroutine(FadeOut(_startMenuAudioSource, _fadeOutDuration));
-        _hasGameStarted = true;
+        HasGameStarted = true;
         Invoke("OnStartButtonClick", _delayAfterClickForStartButton);
     }
 
@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
             PlayerStateChecker._canGetHit = false;
             _playerAnimator.SetBool("GameOver", true);
             _gameOver = true;
-            _hasGameStarted = false;
+            HasGameStarted = false;
             if (!_showedMenuOnce)
             {
                 StartCoroutine(GameOverScreenDelay());
@@ -217,7 +217,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         _gameOver = false;
-        _hasGameStarted = true;
+        HasGameStarted = true;
         PlayerStateChecker._canGetHit = true;
         _checkGameOverOnce = false;
         _checkCountineOnce = false;

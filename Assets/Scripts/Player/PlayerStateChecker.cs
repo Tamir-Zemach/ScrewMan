@@ -107,7 +107,7 @@ public class PlayerStateChecker : MonoBehaviour
     }
     private void Update()
     {
-        if (GameManager._hasGameStarted)
+        if (GameManager.HasGameStarted)
         {
             DrawRaysForTesting();
 
@@ -123,7 +123,7 @@ public class PlayerStateChecker : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (GameManager._hasGameStarted)
+        if (GameManager.HasGameStarted)
         {
             CheckDashingOutTheGround();
         }
