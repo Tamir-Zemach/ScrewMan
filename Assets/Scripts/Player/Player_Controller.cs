@@ -1,5 +1,6 @@
 
 using Player;
+using Triggers;
 using UnityEngine;
 
 
@@ -125,13 +126,13 @@ public class Player_Controller : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Start_Trigger"))
         {
-            Camera_Control.instance.CameraShake(2, 0.4f);
+            CameraController.Instance.TriggerCameraShake(2, 0.4f);
             PlayerMovement.KnockBackFromDoor(-40, 20);
         }
         if (collision.gameObject.CompareTag("Boss_Enter_Trigger"))
         {
             PlayerMovement.ResetVelocity(true, false);
-            Camera_Control.instance.CameraShake(0.5f, 4f);
+            CameraController.Instance.TriggerCameraShake(0.5f, 4f);
         }
         if (collision.gameObject.CompareTag("Ability_Dash"))
         {

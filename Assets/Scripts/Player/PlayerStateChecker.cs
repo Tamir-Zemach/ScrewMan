@@ -44,7 +44,7 @@ public class PlayerStateChecker : MonoBehaviour
 
     [Header("Looking & Shooting")]
     public bool _isShooting;
-    public bool _lookingRight = true;
+    public bool IsLookingRight = true;
 
     [Header("Surface Bools")]
     public bool _hittingWoodSurfce;
@@ -69,7 +69,7 @@ public class PlayerStateChecker : MonoBehaviour
     [SerializeField] private LayerMask _layersForUndashableGround;
     [SerializeField] private LayerMask _canMoveThroughLayer;
 
-    public bool[] _inSpacialCameraZones = new bool[5];
+    public bool[] IsInSpecialCameraZone = new bool[5];
 
     /// <summary>
     [SerializeField] float _cubeOffset = 0.26f;
@@ -136,12 +136,12 @@ public class PlayerStateChecker : MonoBehaviour
     }
     void FlipXOnDir()
     {
-        if ((InputGetter._dir < 0 && _lookingRight) || (InputGetter._dir > 0 && !_lookingRight))
+        if ((InputGetter._dir < 0 && IsLookingRight) || (InputGetter._dir > 0 && !IsLookingRight))
         {
             Vector3 scale = transform.localScale;
             scale.x *= -1;
             transform.localScale = scale;
-            _lookingRight = !_lookingRight; 
+            IsLookingRight = !IsLookingRight; 
         }
     }
     void CheckGround()
@@ -331,7 +331,7 @@ public class PlayerStateChecker : MonoBehaviour
         zone = collision.gameObject.GetComponent<SpecialZone>();
         if (zone != null)
         {
-            _inSpacialCameraZones[zone._zoneIndex] = true; // Set the corresponding zone to true
+            IsInSpecialCameraZone[zone._zoneIndex] = true; // Set the corresponding zone to true
         }
         if (collision.gameObject.CompareTag("End_Trigger"))
         {
@@ -344,7 +344,7 @@ public class PlayerStateChecker : MonoBehaviour
         zone = collision.gameObject.GetComponent<SpecialZone>();
         if (zone != null)
         {
-            _inSpacialCameraZones[zone._zoneIndex] = false;
+            IsInSpecialCameraZone[zone._zoneIndex] = false;
         }
     }
     void DrawRaysForTesting()

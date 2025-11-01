@@ -60,7 +60,7 @@ public class Bullet : MonoBehaviour
     void SideOfShot()
     {
         //depand on the side of rhe player - the bullet will fly in a diraction and rotate also 
-        if (PlayerStateChecker._lookingRight)
+        if (PlayerStateChecker.IsLookingRight)
         {
             _bulletRB.AddForce(Vector2.right * _horizontalSpeed, ForceMode2D.Impulse);
             _bulletRB.AddTorque(-_rotationSpeed, ForceMode2D.Impulse);
