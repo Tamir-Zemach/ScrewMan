@@ -1,51 +1,59 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Ragdoll : MonoBehaviour
+namespace Enemies
 {
-    private Rigidbody2D[] rb;
-    public float _moveForce = 2;
-    public float _spinForce = 2;
-    private float _waitTimeBeforeDestroy;
-    [SerializeField] private float _maxWaitTime;
-    private AudioSource _audioSource;
-    [SerializeField] private AudioClip _enemyDyingAudioClip;
-    // Start is called before the first frame update
-    void Start()
+    public class Ragdoll : MonoBehaviour
     {
-        _audioSource = GetComponent<AudioSource>();
-        rb = gameObject.GetComponentsInChildren<Rigidbody2D>();
-        _audioSource.PlayOneShot(_enemyDyingAudioClip, 0.6f);
-        MoveParts();
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        WaitUntilDestroy();
+        [Header("Ragdoll Physics Settings")]
+        [Tooltip("Force applied to each body part when the ragdoll is activated.")]
+        [SerializeField] private float _moveForce = 2f;
         
-    }
+        [Tooltip("Torque applied to each body part for spinning effect.")]
+        [SerializeField] private float _spinForce = 2f;
+        
+        [Header("Destruction Settings")]
+        [Tooltip("Maximum time to wait before destroying the ragdoll.")]
+        [SerializeField] private float _maxLifetime = 3f;
+        
+        [Header("Audio Settings")]
+        [Tooltip("Audio clip played when the enemy dies.")]
+        [SerializeField] private AudioClip _dyingAudioClip;
 
-    void MoveParts()
-    {
-        for (int i = 0; i < rb.Length; i++)
+        private Rigidbody2D[] _rigidBodies;
+        private AudioSource _audioSource;
+        private float _lifetimeTimer;
+
+        private void Start()
         {
-            rb[i].AddForce(new Vector2(Random.Range(-1,1), 1) * _moveForce , ForceMode2D.Impulse);
-            rb[i].AddTorque(Random.Range(-1,1) * _spinForce , ForceMode2D.Impulse);
+            _audioSource = GetComponent<AudioSource>();
+            _rigidBodies = GetComponentsInChildren<Rigidbody2D>();
+
+            if (_dyingAudioClip != null)
+                _audioSource.PlayOneShot(_dyingAudioClip, 0.6f);
+
+            ApplyRagdollForces();
         }
-    }
-    void WaitUntilDestroy()
-    {
-        //after a while the bullet is destroyed 
-        _waitTimeBeforeDestroy += Time.deltaTime;
-        if (_waitTimeBeforeDestroy > _maxWaitTime)
+
+        private void Update()
         {
+            HandleLifetime();
+        }
+
+        private void ApplyRagdollForces()
+        {
+            foreach (var rb in _rigidBodies)
+            {
+                var randomDirection = new Vector2(Random.Range(-1f, 1f), 1f);
+                rb.AddForce(randomDirection * _moveForce, ForceMode2D.Impulse);
+                rb.AddTorque(Random.Range(-1f, 1f) * _spinForce, ForceMode2D.Impulse);
+            }
+        }
+
+        private void HandleLifetime()
+        {
+            _lifetimeTimer += Time.deltaTime;
+            if (!(_lifetimeTimer > _maxLifetime)) return;
             Destroy(gameObject);
         }
-
     }
-
-
 }
